@@ -41,8 +41,12 @@ class Client(object):
         :return: Returns nothing
         :rtype: None
         """
-        if isinstance(servers, basestring):
-            servers = [servers]
+        try:
+            if isinstance(servers, basestring):
+                servers = [servers]
+        except NameError:
+            if isinstance(servers, str):
+                servers = [servers]
 
         assert servers, "No memcached servers supplied"
         self._servers = [Protocol(server, self.username, self.password,
