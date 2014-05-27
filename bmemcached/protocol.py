@@ -9,7 +9,10 @@ import re
 import socket
 import struct
 import threading
-from urllib import splitport
+try:
+    from urllib import splitport
+except ImportError:
+    from urllib.parse import splitport
 import zlib
 
 from bmemcached.exceptions import AuthenticationNotSupported, InvalidCredentials, MemcachedException
